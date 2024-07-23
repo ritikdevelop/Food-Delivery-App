@@ -44,20 +44,24 @@ A Stripe account for payment processing
 Firebase project for push notifications
 
 Steps
+
 Clone the repository:
 
 bash
 Copy code
 git clone https://github.com/ritikdevelop/Food-Delivery-App.git
+
 cd Delivery-App
 
 
 Install the dependencies:
 
+
 bash
 npm install
 
 Start the development server:
+
 npm run dev
 
 Usage:
@@ -80,14 +84,20 @@ Submitting pull requests for enhancements or bug fixes
 Guidelines:
 
 Fork the repository.
+
 Create a new branch for your feature or bug fix.
 Make your changes.
 Submit a pull request with a detailed description of your changes.
+
 License
+
 This project is licensed under the MIT License. See the LICENSE file for details.
 
 Contact
+
 For any questions or suggestions, feel free to reach out to the project maintainers:
 
+
 Your Name - hrithikrana216@gmail.com
+
 GitHub: https://github.com/ritikdevelop
