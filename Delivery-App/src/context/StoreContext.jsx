@@ -1,7 +1,6 @@
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
 
-
 export const StoreContext = createContext(null);
 
 const StoreContextProvider = (props) => {
@@ -26,7 +25,7 @@ const StoreContextProvider = (props) => {
   const removeFromCart = async (itemId) => {
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
     if (token) {
-      await axios.post(url+"/apu/cart/remove",{itemId},{headers:{token}})
+      await axios.post(url+"/api/cart/remove",{itemId},{headers:{token}})
     }
   };
 
@@ -42,6 +41,7 @@ const StoreContextProvider = (props) => {
   };
 
   const fetchFoodList = async () => {
+    //changed get to post
     const response = await axios.get(url+"/api/food/list");
     setFoodList(response.data.data);
   };
@@ -49,7 +49,8 @@ const StoreContextProvider = (props) => {
 
 
   const loadCartData = async (token) =>{
-    const response = await axios.post(url+"/api/cart/get",{},{header:{token}})
+    // changed post to get
+    const response = await axios.get(url+"/api/cart/get",{},{header:{token}})
     setCartItems(response.data.cartData);
   }
 
