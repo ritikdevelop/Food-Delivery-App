@@ -10,6 +10,7 @@ const Verify = () => {
   const orderId = searchParams.get("orderId");
 
   // console.log(success,orderId);
+
   const { url } = useContext(StoreContext);
   const navigate = useNavigate();
 
