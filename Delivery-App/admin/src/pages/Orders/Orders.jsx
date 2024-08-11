@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./Orders.css";
+import { useState } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { assets } from "../../assets/assets";
+import { useEffect } from "react";
 
 const Orders = ({ url }) => {
   const [orders, setOrders] = useState([]);
@@ -14,6 +16,18 @@ const Orders = ({ url }) => {
       console.log(response.data.data);
     } else {
       toast.error("Error");
+    }
+  };
+
+  //Status handler
+  const statusHandler = async (event, orderId) => {
+    // console.log(event,orderId);
+    const response = await axios.post(url + "/api/order/status", {
+      orderId,
+      status: event.target.value,
+    });
+    if (response.data.success) {
+      await fetchAllOrders();
     }
   };
 
@@ -29,14 +43,13 @@ const Orders = ({ url }) => {
             <img src={assets.parcel_icon} alt="" />
             <div>
               <p className="order-item-food">
-                {order.items /
-                  map((item, index) => {
-                    if (index === order.items.length - 1) {
-                      return item.name + " X " + item.quantity;
-                    } else {
-                      return item.name + " X " + item.quantity + ", ";
-                    }
-                  })}
+                {order.items.map((item, index) => {
+                  if (index === order.items.length - 1) {
+                    return item.name + " X " + item.quantity;
+                  } else {
+                    return item.name + " X " + item.quantity + ", ";
+                  }
+                })}
               </p>
               <p className="order-item-name">
                 {order.address.firstName + " " + order.address.lastName}
@@ -58,7 +71,10 @@ const Orders = ({ url }) => {
             </div>
             <p>Items: {order.items.length}</p>
             <p>${order.amount}</p>
-            <select>
+            <select
+              onChange={(event) => statusHandler(event, order._id)}
+              value={order.status}
+            >
               <option value="Food Processing">Food Processing</option>
               <option value="Out for delivery">Out for delivery</option>
               <option value="Delivered">Delivered</option>

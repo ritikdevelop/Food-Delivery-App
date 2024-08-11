@@ -3,6 +3,7 @@ import "./MyOrders.css";
 import { StoreContext } from "../../context/StoreContext";
 import axios from "axios";
 import { assets } from "../../../admin/src/assets/assets";
+import { useEffect } from "react";
 
 const MyOrders = () => {
   const { url, token } = useContext(StoreContext);
@@ -46,9 +47,9 @@ const MyOrders = () => {
               <p>${order.amount}.00</p>
               <p>Items: {order.items.length}</p>
               <p>
-                <span>&#x25cf</span> <b>{order.status}</b>
+                <span>&#x25cf;</span> <b>{order.status}</b>
               </p>
-              <button>Track Order</button>
+              <button onClick={fetchOrders}>Track Order</button>
             </div>
           );
         })}

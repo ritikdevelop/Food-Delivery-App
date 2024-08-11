@@ -3,6 +3,7 @@ import "./Verify.css";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { StoreContext } from "../../context/StoreContext";
 import axios from "axios";
+import { useEffect } from "react";
 
 const Verify = () => {
   const [searchParams, setSearchparams] = useSearchParams();
