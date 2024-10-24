@@ -5,6 +5,7 @@ export const StoreContext = createContext(null);
 
 const StoreContextProvider = (props) => {
   const [cartItems, setCartItems] = useState({});
+
   const url = "https://food-delivery-app-pt7j.onrender.com";
 
   const [token, setToken] = useState("");
@@ -48,11 +49,26 @@ const StoreContextProvider = (props) => {
 
 
 
+  // const loadCartData = async (token) =>{
+  //   // changed post to get
+  //   const response = await axios.get(url+"/api/cart/get",{},{headers:{token}})
+  //   setCartItems(response.data.cartData);
+  // }
   const loadCartData = async (token) =>{
-    // changed post to get
-    const response = await axios.get(url+"/api/cart/get",{},{header:{token}})
+    const response = await axios.post(url+"/api/cart/get",{},{headers:{token}})
     setCartItems(response.data.cartData);
   }
+
+
+// const loadCartData = async () => {
+//     try {
+//         const response = await axios.get(url+"/api/cart/get",{},{headers:{token}});
+//         // Handle the response data (e.g., update your cart state)
+//     } catch (error) {
+//         console.error('Error loading cart data:', error); 
+//         // Handle errors (e.g., display an error message to the user)
+//     }
+// };
 
   useEffect(() => {
     async function loadData(){
