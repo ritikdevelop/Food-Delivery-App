@@ -8,8 +8,8 @@ import Footer from "./Components/Footer/Footer";
 import LoginPopup from "./Components/LoginPopup/LoginPopup";
 import Verify from "./pages/Verify/Verify";
 import MyOrders from "./pages/MyOrders/MyOrders";
-import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/next";
+
+
 
 const App = () => {
   const [showLogin, setShowLogin] = useState(false);
@@ -28,8 +28,7 @@ const App = () => {
         </Routes>
       </div>
       <Footer />
-      <Analytics />
-      <SpeedInsights />
+
     </>
   );
 };
